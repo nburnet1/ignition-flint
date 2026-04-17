@@ -122,10 +122,7 @@ export class PythonScriptProvider extends BaseResourceTypeProvider {
                     resourceTypeId: 'script-python',
                     description: 'Empty Python script with basic structure',
                     files: {
-                        'code.py':
-                            '# New Python Script\n\n' +
-                            'def main():\n    """Main function - add your code here"""\n    pass\n\n' +
-                            'if __name__ == "__main__":\n    main()\n',
+                        'code.py': '',
                         'resource.json': JSON.stringify(
                             {
                                 scope: 'A',
@@ -139,38 +136,14 @@ export class PythonScriptProvider extends BaseResourceTypeProvider {
                             2
                         )
                     }
-                },
-                {
-                    id: 'gateway-script',
-                    name: 'Gateway Event Script',
-                    resourceTypeId: 'script-python',
-                    description: 'Template for gateway event scripts',
-                    files: {
-                        'code.py':
-                            '# Gateway Event Script\n\ndef runAction(self):\n    """Runs when the gateway event triggers"""\n    logger = system.util.getLogger("GatewayScript")\n    logger.info("Gateway event script executed")\n    \n    # Add your event handling code here\n    pass\n',
-                        'resource.json': JSON.stringify(
-                            {
-                                scope: 'G',
-                                version: 1,
-                                restricted: false,
-                                overridable: false,
-                                files: ['code.py'],
-                                attributes: {}
-                            },
-                            null,
-                            2
-                        )
-                    }
                 }
             ],
             defaultTemplateId: 'basic-python',
             generateDefaultContent: (templateId?: string): string => {
                 switch (templateId) {
-                    case 'gateway-script':
-                        return '# Gateway Event Script\n\ndef runAction(self):\n    """Runs when the gateway event triggers"""\n    # Add your code here\n    pass\n';
                     case 'basic-python':
                     default:
-                        return '# New Python Script\n\ndef main():\n    """Main function - add your code here"""\n    pass\n\nif __name__ == "__main__":\n    main()\n';
+                        return '';
                 }
             }
         };
